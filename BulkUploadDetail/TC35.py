@@ -64,10 +64,10 @@ for row in rows:
             break  # Karena udah ketemu di break biar looping nya stop
 
 
-driver.find_element(By.ID, '').click() #buat nekan tombol add data
+driver.find_element(By.ID, 'button-add').click() #buat nekan tombol add data
 
 #TC35
-driver.find_element(By.ID, '').click() #buat nekan tombol submit di add data
+driver.find_element(By.XPATH, '//button[normalize-space()="SUBMIT"]').click() #buat nekan tombol submit di add data
 
 # close browser
 driver.quit()

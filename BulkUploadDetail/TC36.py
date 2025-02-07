@@ -70,12 +70,12 @@ driver.find_element(By.ID, '').click() #buat nekan tombol add data
 driver.find_element(By.ID, '').click() #buat nekan tombol submit di add data
 
 #TC36
-driver.find_element(By.ID, '').send_keys('1') #merchant id
-driver.find_element(By.ID, '').send_keys('A13') #user code
-driver.find_element(By.ID, '').send_keys('Syifa') #username
-driver.find_element(By.ID, '').send_keys('B13') #custID
-driver.find_element(By.ID, '').send_keys('satu') #total
-driver.find_element(By.ID, '').send_keys('du') #periode
+driver.find_element(By.NAME, 'merchantTransactionId').send_keys('1') #merchant id
+driver.find_element(By.NAME, 'userCode').send_keys('A13') #user code
+driver.find_element(By.NAME, 'userName').send_keys('Syifa') #username
+driver.find_element(By.NAME, 'customerId').send_keys('B13') #custID
+driver.find_element(By.NAME, 'totalAmount').send_keys('satu') #total
+driver.find_element(By.NAME, 'period').send_keys('du') #periode
 
 # close browser
 driver.quit()

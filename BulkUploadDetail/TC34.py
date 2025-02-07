@@ -64,7 +64,7 @@ for row in rows:
             break  # Karena udah ketemu di break biar looping nya stop
 
 #TC 34
-driver.find_element(By.ID, '').click() #buat nekan tombol add data
+driver.find_element(By.ID, 'button-add').click() #buat nekan tombol add data
 
 # close browser
 driver.quit()
