@@ -39,7 +39,34 @@ filter.click()
 driver.find_element(By.XPATH, "//button[normalize-space()='REMOVE FILTER']").click() #hrs gini biar datanya muncul 
 
 #driver.find_element(By.LINK_TEXT, "Detail").click()
-wait = WebDriverWait(driver, 10) 
-detail = wait.until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, "//a[@href='/dashboard/setorku/bulk-upload-setorku/16996']")))
-detail.click()
+#menunggu tabel untuk memuat max 10
+wait = WebDriverWait(driver, 10)
+table = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@role='grid']")))
+
+
+# MUI tables biasanya pake divs with role="row" untuk baris tablenya
+rows = table.find_elements(By.XPATH, ".//div[@role='row']")  
+# target text yang mau dicari
+target_text = "OTO_SOLO_Syifa_050225134403"
+# mencari data di column yang ada text "OTO_SOLO_Syifa_050225134403"
+# Asumsi nya 1 data
+target_column_index = 1
+for row in rows:
+    # MUI tables biasanya pake divs with role="gridcell" untuk columns
+    columns = row.find_elements(By.XPATH, ".//div[@role='gridcell']")
+    
+    if len(columns) > target_column_index:  # Memastikan columns yang dicari ada
+        column_text = columns[target_column_index].text 
+        if column_text == target_text:
+            # Kalau column text nya sesuai, klik button detail
+            detail_button = row.find_element(By.XPATH, ".//button[contains(text(), 'Detail')]")
+            detail_button.click()
+            break  # Karena udah ketemu di break biar looping nya stop
+
+# close browser
+driver.quit()
+
+# wait = WebDriverWait(driver, 10) 
+# detail = wait.until(EC.element_to_be_clickable((By.PARTIAL_LINK_TEXT, "//a[@href='/dashboard/setorku/bulk-upload-setorku/16996']")))
+# detail.click()
 #driver.find_element(By.XPATH, "//div[@class='MuiStack-root css-1ro3byo']/a[@href='/dashboard/setorku/bulk-upload-setorku/16996']/p[@class='MuiTypography-root MuiTypography-body1 css-ilw7fk' and text()='Detail']").click()
