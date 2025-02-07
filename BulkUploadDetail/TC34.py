@@ -45,7 +45,7 @@ table = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@role='grid'
 
 
 # MUI tables biasanya pake divs with role="row" untuk baris tablenya
-rows = table.find_elements(By.XPATH, ".//div[@role='row']")  
+rows = table.find_elements(By.XPATH, "//div[@role='row']")  
 # target text yang mau dicari
 target_text = "OTO_SOLO_Syifa_050225134403"
 # mencari data di column yang ada text "OTO_SOLO_Syifa_050225134403"
@@ -53,13 +53,13 @@ target_text = "OTO_SOLO_Syifa_050225134403"
 target_column_index = 1
 for row in rows:
     # MUI tables biasanya pake divs with role="gridcell" untuk columns
-    columns = row.find_elements(By.XPATH, ".//div[@role='gridcell']")
+    columns = row.find_elements(By.XPATH, ".//div[@role='grid']")
     
     if len(columns) > target_column_index:  # Memastikan columns yang dicari ada
         column_text = columns[target_column_index].text 
         if column_text == target_text:
             # Kalau column text nya sesuai, klik button detail
-            detail_button = row.find_element(By.XPATH, ".//button[contains(text(), 'Detail')]")
+            detail_button = row.find_element(By.XPATH, "//p[contains(text(), 'Detail')]")
             detail_button.click()
             break  # Karena udah ketemu di break biar looping nya stop
 
